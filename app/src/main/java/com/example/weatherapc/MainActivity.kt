@@ -13,7 +13,7 @@ class MainActivity() : AppCompatActivity()  {
 
         val text = findViewById<TextView>(R.id.tVHello)
 
-        text.text = "Привет!!!"
+        text.text = "Привет!"
 
     }
 }
