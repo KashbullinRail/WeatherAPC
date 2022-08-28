@@ -36,6 +36,7 @@ dependencies {
     def lifecycle_version = "2.6.0-alpha01"
     def retrofit_version = "2.9.0"
     def coroutines_version = "1.6.4"
+    def OkHttpClient_version = "4.9.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
@@ -53,5 +54,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    // OkHttpClient
+    implementation "com.squareup.okhttp3:okhttp:$OkHttpClient_version"
 
 }
