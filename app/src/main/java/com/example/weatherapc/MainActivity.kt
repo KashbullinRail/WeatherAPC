@@ -2,18 +2,41 @@ package com.example.weatherapc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
+import com.example.weatherapc.feature.weather_screen.WeatherInteractor
+import com.example.weatherapc.feature.weather_screen.data.WeatherAPI
+import com.example.weatherapc.feature.weather_screen.data.WeatherAPIClient
+import com.example.weatherapc.feature.weather_screen.data.WeatherRemoteSource
+import com.example.weatherapc.feature.weather_screen.data.WeatherRepoImpl
+import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenPresenter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
-class MainActivity() : AppCompatActivity()  {
+class MainActivity() : AppCompatActivity() {
+
+    private lateinit var presenter : WeatherScreenPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val text = findViewById<TextView>(R.id.tVHello)
+        presenter = WeatherScreenPresenter(
+            WeatherInteractor(
+                WeatherRepoImpl(
+                    WeatherRemoteSource(WeatherAPIClient.getAPI())
+                )
+            )
+        )
+        //var weather = ""
+        //val text = findViewById<TextView>(R.id.tVHello)
 
-        text.text = "Привет!!!"
+        GlobalScope.launch {
+           Log.d("NET",presenter.interactor.getWeather())
+        }
+
+        //text.text
 
     }
 }
