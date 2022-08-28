@@ -1,5 +1,6 @@
-package com.example.weatherapc
+package com.example.weatherapc.feature.weather_screen.data
 
+import com.example.weatherapc.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
@@ -13,7 +14,9 @@ object WeatherAPIClient {
         .client(okHttpClient)
         .build()
 
-    fun getAPI() {
+    private val weatherAPI = retrofit.create(WeatherAPI::class.java)
+    fun getAPI(): WeatherAPI {
+        return weatherAPI
 
     }
 }
