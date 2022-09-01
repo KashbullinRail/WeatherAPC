@@ -1,13 +1,15 @@
 package com.example.weatherapc.feature.weather_screen.di
 
+import androidx.lifecycle.ViewModel
 import com.example.weatherapc.BASE_URL
 import com.example.weatherapc.feature.weather_screen.WeatherInteractor
 import com.example.weatherapc.feature.weather_screen.data.WeatherAPI
 import com.example.weatherapc.feature.weather_screen.data.WeatherRemoteSource
 import com.example.weatherapc.feature.weather_screen.data.WeatherRepo
 import com.example.weatherapc.feature.weather_screen.data.WeatherRepoImpl
-import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenPresenter
+import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenViewModel
 import okhttp3.OkHttpClient
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,7 +41,7 @@ val weatherScreenModule = module {
 
     single<WeatherInteractor> { WeatherInteractor(get<WeatherRepo>()) }
 
-    single { WeatherScreenPresenter(get<WeatherInteractor>()) }
+    viewModel { WeatherScreenViewModel(get<WeatherInteractor>()) }
 
 
 }
