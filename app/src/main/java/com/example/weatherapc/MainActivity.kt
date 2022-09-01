@@ -29,14 +29,14 @@ class MainActivity() : AppCompatActivity() {
                 )
             )
         )
-        //var weather = ""
-        //val text = findViewById<TextView>(R.id.tVHello)
+        var weather = ""
+        val text = findViewById<TextView>(R.id.tVHello)
 
         GlobalScope.launch {
            Log.d("NET",presenter.interactor.getWeather())
         }
 
-        //text.text
+        text.text
 
     }
 }
