@@ -10,8 +10,10 @@ import com.example.weatherapc.feature.weather_screen.data.WeatherAPIClient
 import com.example.weatherapc.feature.weather_screen.data.WeatherRemoteSource
 import com.example.weatherapc.feature.weather_screen.data.WeatherRepoImpl
 import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenPresenter
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity() : AppCompatActivity() {
@@ -30,13 +32,12 @@ class MainActivity() : AppCompatActivity() {
             )
         )
         var weather = ""
-        val text = findViewById<TextView>(R.id.tVHello)
+        val tvTemp = findViewById<TextView>(R.id.tVHello)
 
         GlobalScope.launch {
-           Log.d("NET",presenter.interactor.getWeather())
+            withContext(Dispatchers.Main){
+                tvTemp.text = presenter.getWeather()
+            }
         }
-
-        text.text
-
     }
 }
