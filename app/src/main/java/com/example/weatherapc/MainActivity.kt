@@ -31,7 +31,7 @@ class MainActivity() : AppCompatActivity() {
                 )
             )
         )
-        var weather = ""
+
         val tvTemp = findViewById<TextView>(R.id.tVHello)
 
         GlobalScope.launch {
