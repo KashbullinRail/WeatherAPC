@@ -2,10 +2,7 @@ package com.example.weatherapc.feature.weather_screen.di
 
 import com.example.weatherapc.BASE_URL
 import com.example.weatherapc.feature.weather_screen.WeatherInteractor
-import com.example.weatherapc.feature.weather_screen.data.WeatherAPI
-import com.example.weatherapc.feature.weather_screen.data.WeatherRemoteSource
-import com.example.weatherapc.feature.weather_screen.data.WeatherRepo
-import com.example.weatherapc.feature.weather_screen.data.WeatherRepoImpl
+import com.example.weatherapc.feature.weather_screen.data.*
 import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenPresenter
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -35,7 +32,9 @@ val weatherScreenModule = module {
 
     single<WeatherRemoteSource> { WeatherRemoteSource(get<WeatherAPI>()) }
 
-    single<WeatherRepo> { WeatherRepoImpl(get<WeatherRemoteSource>()) }
+//    single<WeatherRepo> { WeatherRepoImpl(get<WeatherRemoteSource>()) }
+
+    single<WeatherRepo> { WeatherRepoMock() }
 
     single<WeatherInteractor> { WeatherInteractor(get<WeatherRepo>()) }
 
