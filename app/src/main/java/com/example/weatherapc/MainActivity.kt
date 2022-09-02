@@ -3,7 +3,9 @@ package com.example.weatherapc
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.example.weatherapc.feature.weather_screen.ui.UIEvent
 import com.example.weatherapc.feature.weather_screen.ui.ViewState
 import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenViewModel
@@ -21,6 +23,7 @@ class MainActivity() : AppCompatActivity() {
 
     private val tvHello : TextView by lazy { findViewById(R.id.tVHello) }
     private val fabWeather : FloatingActionButton by lazy { findViewById(R.id.fabWeatherFetch)}
+    private val progressBar : ProgressBar by lazy { findViewById(R.id.progressBar)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class MainActivity() : AppCompatActivity() {
     }
 
     private fun render(viewState: ViewState){
+        progressBar.isVisible = viewState.isLoading
         tvHello.text = "${viewState.title} ${viewState.temperature}"
     }
 
