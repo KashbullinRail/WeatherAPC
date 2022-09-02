@@ -35,7 +35,7 @@ class MainActivity() : AppCompatActivity() {
     }
 
     private fun render(viewState: ViewState){
-        tvHello.text = "${viewState.temperature}"
+        tvHello.text = "${viewState.title} ${viewState.temperature}"
     }
 
 }

@@ -10,7 +10,7 @@ class WeatherScreenViewModel(val interactor : WeatherInteractor): BaseViewModel<
         return interactor.getWeather()
     }
 
-    override fun initialViewState(): ViewState = ViewState(temperature = "")
+    override fun initialViewState(): ViewState = ViewState(title = "Hello",temperature = "")
 
     override suspend fun reduce(event: Event, previousState: ViewState): ViewState? {
         when(event){

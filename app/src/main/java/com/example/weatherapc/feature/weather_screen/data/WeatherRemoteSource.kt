@@ -7,6 +7,6 @@ class WeatherRemoteSource(private val api: WeatherAPI) {
 
     // TODO add query
     suspend fun getWeather(): WeatherRemoteModel {
-        return api.getWeather(query = "London")
+        return api.getWeather(query = "Kazan")
     }
 }
