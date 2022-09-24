@@ -1,7 +1,7 @@
 package com.example.weatherapc
 
 import android.app.Application
-import com.example.weatherapc.feature.weather_screen.di.weatherScreenModule
+import com.example.weatherapc.featureTemp.weather_screen.di.weatherScreenModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

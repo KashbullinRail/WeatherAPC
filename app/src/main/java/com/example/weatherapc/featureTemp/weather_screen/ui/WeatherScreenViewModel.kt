@@ -1,9 +1,9 @@
-package com.example.weatherapc.feature.weather_screen.ui
+package com.example.weatherapc.featureTemp.weather_screen.ui
 
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapc.base.BaseViewModel
 import com.example.weatherapc.base.Event
-import com.example.weatherapc.feature.weather_screen.WeatherInteractor
+import com.example.weatherapc.featureTemp.weather_screen.WeatherInteractor
 import kotlinx.coroutines.launch
 
 

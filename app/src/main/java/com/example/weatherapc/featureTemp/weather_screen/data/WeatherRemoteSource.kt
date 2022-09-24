@@ -1,7 +1,6 @@
-package com.example.weatherapc.feature.weather_screen.data
+package com.example.weatherapc.featureTemp.weather_screen.data
 
-import com.example.weatherapc.feature.weather_screen.data.model.WeatherRemoteModel
-import retrofit2.Response
+import com.example.weatherapc.featureTemp.weather_screen.data.model.WeatherRemoteModel
 
 class WeatherRemoteSource(private val api: WeatherAPI) {
 

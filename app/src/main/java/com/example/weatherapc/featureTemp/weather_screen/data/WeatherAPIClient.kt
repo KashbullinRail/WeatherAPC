@@ -1,4 +1,4 @@
-package com.example.weatherapc.feature.weather_screen.data
+package com.example.weatherapc.featureTemp.weather_screen.data
 
 import com.example.weatherapc.BASE_URL
 import okhttp3.OkHttpClient

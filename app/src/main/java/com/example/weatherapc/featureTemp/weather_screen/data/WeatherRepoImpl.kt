@@ -1,6 +1,6 @@
-package com.example.weatherapc.feature.weather_screen.data
+package com.example.weatherapc.featureTemp.weather_screen.data
 
-import com.example.weatherapc.feature.weather_screen.ui.model.WeatherModel
+import com.example.weatherapc.featureTemp.weather_screen.ui.model.WeatherModel
 
 class WeatherRepoImpl(private val weatherRemoteSource: WeatherRemoteSource) : WeatherRepo {
     override suspend fun getTemperature(): WeatherModel {

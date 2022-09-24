@@ -3,18 +3,13 @@ package com.example.weatherapc
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
-import com.example.weatherapc.feature.weather_screen.ui.UIEvent
-import com.example.weatherapc.feature.weather_screen.ui.ViewState
-import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenViewModel
+import com.example.weatherapc.featureTemp.weather_screen.ui.UIEvent
+import com.example.weatherapc.featureTemp.weather_screen.ui.ViewState
+import com.example.weatherapc.featureTemp.weather_screen.ui.WeatherScreenViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -31,6 +26,7 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         viewModel.viewState.observe(this,::render)
 
         fabWeather.setOnClickListener {
@@ -38,9 +34,12 @@ class MainActivity() : AppCompatActivity() {
         }
 
         fabWeatherWindAction.setOnClickListener{
+
             val windActivityAction = Intent(this, WindActivity::class.java)
             startActivity(windActivityAction)
         }
+
+
 
 
     }

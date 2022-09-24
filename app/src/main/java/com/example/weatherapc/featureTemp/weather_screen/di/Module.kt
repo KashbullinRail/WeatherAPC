@@ -1,13 +1,12 @@
-package com.example.weatherapc.feature.weather_screen.di
+package com.example.weatherapc.featureTemp.weather_screen.di
 
-import androidx.lifecycle.ViewModel
 import com.example.weatherapc.BASE_URL
-import com.example.weatherapc.feature.weather_screen.WeatherInteractor
-import com.example.weatherapc.feature.weather_screen.data.WeatherAPI
-import com.example.weatherapc.feature.weather_screen.data.WeatherRemoteSource
-import com.example.weatherapc.feature.weather_screen.data.WeatherRepo
-import com.example.weatherapc.feature.weather_screen.data.WeatherRepoImpl
-import com.example.weatherapc.feature.weather_screen.ui.WeatherScreenViewModel
+import com.example.weatherapc.featureTemp.weather_screen.WeatherInteractor
+import com.example.weatherapc.featureTemp.weather_screen.data.WeatherAPI
+import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRemoteSource
+import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRepo
+import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRepoImpl
+import com.example.weatherapc.featureTemp.weather_screen.ui.WeatherScreenViewModel
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

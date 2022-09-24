@@ -1,8 +1,7 @@
-package com.example.weatherapc.feature.weather_screen.data
+package com.example.weatherapc.featureTemp.weather_screen.data
 
 import com.example.weatherapc.API_KEY
-import com.example.weatherapc.feature.weather_screen.data.model.WeatherRemoteModel
-import retrofit2.Response
+import com.example.weatherapc.featureTemp.weather_screen.data.model.WeatherRemoteModel
 import retrofit2.http.GET
 import retrofit2.http.Query
 

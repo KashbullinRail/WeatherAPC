@@ -1,4 +1,4 @@
-package com.example.weatherapc.feature.weather_screen.ui
+package com.example.weatherapc.featureTemp.weather_screen.ui
 
 import com.example.weatherapc.base.Event
 
