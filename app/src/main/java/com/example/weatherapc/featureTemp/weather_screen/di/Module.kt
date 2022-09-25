@@ -13,7 +13,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val weatherScreenModule = module {
+val weatherScreenModuleMain = module {
 
     single<OkHttpClient> {
         OkHttpClient
@@ -41,6 +41,5 @@ val weatherScreenModule = module {
     single<WeatherInteractor> { WeatherInteractor(get<WeatherRepo>()) }
 
     viewModel { WeatherScreenViewModel(get<WeatherInteractor>()) }
-
 
 }

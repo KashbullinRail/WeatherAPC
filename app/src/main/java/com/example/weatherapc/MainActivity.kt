@@ -15,38 +15,37 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity() : AppCompatActivity() {
 
-    private val viewModel: WeatherScreenViewModel by viewModel()
+    private val viewModelMain: WeatherScreenViewModel by viewModel()
 
-    private val tvHello : TextView by lazy { findViewById(R.id.tVTemp) }
-    private val fabWeather : FloatingActionButton by lazy { findViewById(R.id.fabWeatherFetchTemp)}
+    private val tvTemp : TextView by lazy { findViewById(R.id.tvTemp) }
+    private val tvPressure: TextView by lazy { findViewById(R.id.tvPressure) }
+    private val tvHumidity: TextView by lazy { findViewById(R.id.tvHumidity) }
+
     private val progressBar : ProgressBar by lazy { findViewById(R.id.progressBar)}
+    private val fabWeatherMain : FloatingActionButton by lazy { findViewById(R.id.fabWeatherFetchTemp)}
     private val fabWeatherWindAction: FloatingActionButton by lazy { findViewById(R.id.fabWeatherWindAction) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        viewModelMain.viewState.observe(this,::render)
 
-        viewModel.viewState.observe(this,::render)
-
-        fabWeather.setOnClickListener {
-            viewModel.processUIEvent(UIEvent.onButtonClicked)
+        fabWeatherMain.setOnClickListener {
+            viewModelMain.processUIEvent(UIEvent.onButtonClickedMain)
         }
 
         fabWeatherWindAction.setOnClickListener{
-
             val windActivityAction = Intent(this, WindActivity::class.java)
             startActivity(windActivityAction)
         }
-
-
-
-
     }
 
     private fun render(viewState: ViewState){
         progressBar.isVisible = viewState.isLoading
-        tvHello.text = "${viewState.title} ${viewState.temperature}"
+        tvTemp.text = "${viewState.titleTemp} ${viewState.temperature}"
+        tvPressure.text = "${viewState.titlePressure} ${viewState.pressure}"
+        tvHumidity.text = "${viewState.titleHumidity} ${viewState.humidity}"
     }
 
 }

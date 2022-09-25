@@ -4,5 +4,7 @@ import com.example.weatherapc.featureTemp.weather_screen.data.model.WeatherRemot
 import com.example.weatherapc.featureTemp.weather_screen.ui.model.WeatherModel
 
 fun WeatherRemoteModel.toDomian() = WeatherModel(
-    temperature = this.main.temperature
+    temperature = this.main.temperature,
+    pressure = this.main.pressure,
+    humidity = this.main.humidity
 )

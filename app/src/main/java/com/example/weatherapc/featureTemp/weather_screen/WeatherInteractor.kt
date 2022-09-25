@@ -9,5 +9,9 @@ class WeatherInteractor(private val weatherRepo: WeatherRepo) {
 
     suspend fun getWeather(): Either<Throwable, WeatherModel> {
         return attempt { weatherRepo.getTemperature() }
+//        attempt { weatherRepo.getPressure() }
+//        attempt { weatherRepo.getHumidity() }
     }
+
+
 }

@@ -7,31 +7,50 @@ import com.example.weatherapc.featureTemp.weather_screen.WeatherInteractor
 import kotlinx.coroutines.launch
 
 
-class WeatherScreenViewModel(val interactor: WeatherInteractor) : BaseViewModel<ViewState>() {
+class WeatherScreenViewModel(private val interactor: WeatherInteractor) : BaseViewModel<ViewState>() {
 
 
     override fun initialViewState(): ViewState =
-        ViewState(isLoading = false, title = "Температура воздуха ", temperature = "нажмите кнопку для запроса")
+        ViewState(
+            isLoading = false,
+            titleTemp = "Температура воздуха  ",
+            titlePressure = "Атмосферное давление  ",
+            titleHumidity = "Влажность воздуха  ",
+            temperature = "?",
+            pressure = "?",
+            humidity = "?"
+        )
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
-            is UIEvent.onButtonClicked -> {
+            is UIEvent.onButtonClickedMain -> {
 
                 viewModelScope.launch {
                     interactor.getWeather().fold(
                         onError = {
-                            processDataEvent(DataEvent.onWeatherFetchFailed(error = it))
+                            processDataEvent(DataEvent.onWeatherFetchMainFailed(error = it))
                         },
                         onSuccess = {
-                            processDataEvent(DataEvent.onWeatherFetchSucceed(temperature = it.temperature))
+                            processDataEvent(
+                                DataEvent.onWeatherFetchMainSucceed(
+                                    temperature = it.temperature,
+                                    pressure = it.pressure,
+                                    humidity = it.humidity
+                                )
+                            )
                         }
                     )
                 }
 
                 return previousState.copy(isLoading = true)
             }
-            is DataEvent.onWeatherFetchSucceed -> {
-                return previousState.copy(isLoading = false, temperature = event.temperature)
+            is DataEvent.onWeatherFetchMainSucceed -> {
+                return previousState.copy(
+                    isLoading = false,
+                    temperature = event.temperature,
+                    pressure = event.pressure,
+                    humidity = event.humidity
+                )
             }
 
             else -> return null
