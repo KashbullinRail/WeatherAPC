@@ -3,7 +3,7 @@ package com.example.weatherapc.featureWind.weather_screen.ui
 import com.example.weatherapc.base.Event
 
 
-data class ViewState(
+data class ViewStateWind(
     val isLoading : Boolean,
     val speed : String,
     val deg: String,
@@ -11,11 +11,11 @@ data class ViewState(
     val titleDeg: String,
 )
 
-sealed class UIEvent : Event {
-    object onButtonClickedWind : UIEvent()
+sealed class UIEventWind : Event {
+    object onButtonClickedWind : UIEventWind()
 }
 
-sealed class DataEvent : Event {
-    data class onWeatherFetchWindSucceed(val speed: String, val deg: String) : DataEvent()
-    data class onWeatherFetchWindFailed(val error: Throwable) : DataEvent()
+sealed class DataEventWind : Event {
+    data class onWeatherFetchWindSucceed(val speed: String, val deg: String) : DataEventWind()
+    data class onWeatherFetchWindFailed(val error: Throwable) : DataEventWind()
 }

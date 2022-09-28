@@ -3,15 +3,15 @@ package com.example.weatherapc.featureWind.weather_screen.ui
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapc.base.BaseViewModel
 import com.example.weatherapc.base.Event
-import com.example.weatherapc.featureWind.weather_screen.WeatherInteractor
+import com.example.weatherapc.featureWind.weather_screen.WeatherInteractorWind
 
 import kotlinx.coroutines.launch
 
-class WeatherScreenViewModel(private val interactor: WeatherInteractor) : BaseViewModel<ViewState>() {
+class WeatherScreenViewModelWind(private val interactorWind: WeatherInteractorWind) : BaseViewModel<ViewStateWind>() {
 
 
-    override fun initialViewState(): ViewState =
-        ViewState(
+    override fun initialViewState(): ViewStateWind =
+        ViewStateWind(
             isLoading = false,
             speed = "?",
             deg = "?",
@@ -19,18 +19,18 @@ class WeatherScreenViewModel(private val interactor: WeatherInteractor) : BaseVi
             titleDeg = "Направление ветра  "
         )
 
-    override fun reduce(event: Event, previousState: ViewState): ViewState? {
+    override fun reduce(event: Event, previousState: ViewStateWind): ViewStateWind? {
         when (event) {
-            is UIEvent.onButtonClickedWind -> {
+            is UIEventWind.onButtonClickedWind -> {
 
                 viewModelScope.launch {
-                    interactor.getWeather().fold(
+                    interactorWind.getWeather().fold(
                         onError = {
-                            processDataEvent(DataEvent.onWeatherFetchWindFailed(error = it))
+                            processDataEvent(DataEventWind.onWeatherFetchWindFailed(error = it))
                         },
                         onSuccess = {
                             processDataEvent(
-                                DataEvent.onWeatherFetchWindSucceed(
+                                DataEventWind.onWeatherFetchWindSucceed(
                                     speed = it.speed,
                                     deg = it.deg
                                 )
@@ -41,7 +41,7 @@ class WeatherScreenViewModel(private val interactor: WeatherInteractor) : BaseVi
 
                 return previousState.copy(isLoading = true)
             }
-            is DataEvent.onWeatherFetchWindSucceed -> {
+            is DataEventWind.onWeatherFetchWindSucceed -> {
                 return previousState.copy(
                     isLoading = false,
                     speed = event.speed,

@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity() : AppCompatActivity() {
 
-    private val viewModelMain: WeatherScreenViewModel by viewModel()
+    private val viewModel: WeatherScreenViewModel by viewModel()
 
     private val tvTemp : TextView by lazy { findViewById(R.id.tvTemp) }
     private val tvPressure: TextView by lazy { findViewById(R.id.tvPressure) }
@@ -29,10 +29,10 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModelMain.viewState.observe(this,::render)
+        viewModel.viewState.observe(this,::render)
 
         fabWeatherMain.setOnClickListener {
-            viewModelMain.processUIEvent(UIEvent.onButtonClickedMain)
+            viewModel.processUIEvent(UIEvent.onButtonClickedMain)
         }
 
         fabWeatherWindAction.setOnClickListener{

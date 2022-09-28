@@ -1,12 +1,12 @@
 package com.example.weatherapc.featureWind.weather_screen.di
 
 import com.example.weatherapc.BASE_URL
-import com.example.weatherapc.featureTemp.weather_screen.WeatherInteractor
-import com.example.weatherapc.featureTemp.weather_screen.data.WeatherAPI
-import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRemoteSource
-import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRepo
-import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRepoImpl
-import com.example.weatherapc.featureTemp.weather_screen.ui.WeatherScreenViewModel
+import com.example.weatherapc.featureWind.weather_screen.WeatherInteractorWind
+import com.example.weatherapc.featureWind.weather_screen.data.WeatherAPI
+import com.example.weatherapc.featureWind.weather_screen.data.WeatherRemoteSourceWind
+import com.example.weatherapc.featureWind.weather_screen.data.WeatherRepoImplWind
+import com.example.weatherapc.featureWind.weather_screen.data.WeatherRepoWind
+import com.example.weatherapc.featureWind.weather_screen.ui.WeatherScreenViewModelWind
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -34,12 +34,12 @@ val weatherScreenModuleWind = module {
             .create(WeatherAPI::class.java)
     }
 
-    single<WeatherRemoteSource> { WeatherRemoteSource(get<WeatherAPI>()) }
+    single<WeatherRemoteSourceWind> { WeatherRemoteSourceWind(get<WeatherAPI>()) }
 
-    single<WeatherRepo> { WeatherRepoImpl(get<WeatherRemoteSource>()) }
+    single<WeatherRepoWind> { WeatherRepoImplWind(get<WeatherRemoteSourceWind>()) }
 
-    single<WeatherInteractor> { WeatherInteractor(get<WeatherRepo>()) }
+    single<WeatherInteractorWind> { WeatherInteractorWind(get<WeatherRepoWind>()) }
 
-    viewModel { WeatherScreenViewModel(get<WeatherInteractor>()) }
+    viewModel { WeatherScreenViewModelWind(get<WeatherInteractorWind>()) }
 
 }

@@ -6,20 +6,20 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.example.weatherapc.featureWind.weather_screen.ui.UIEvent
-import com.example.weatherapc.featureWind.weather_screen.ui.ViewState
-import com.example.weatherapc.featureWind.weather_screen.ui.WeatherScreenViewModel
+import com.example.weatherapc.featureWind.weather_screen.ui.UIEventWind
+import com.example.weatherapc.featureWind.weather_screen.ui.ViewStateWind
+import com.example.weatherapc.featureWind.weather_screen.ui.WeatherScreenViewModelWind
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WindActivity(): AppCompatActivity() {
 
-    private val viewModelWind: WeatherScreenViewModel by viewModel()
+    private val viewModelWind: WeatherScreenViewModelWind by viewModel()
 
     private val tvSpeed : TextView by lazy { findViewById(R.id.tvSpeed) }
     private val tvDeg: TextView by lazy { findViewById(R.id.tvDeg) }
 
-    private val progressBar : ProgressBar by lazy { findViewById(R.id.progressBar)}
+    private val progressBarWind : ProgressBar by lazy { findViewById(R.id.progressBarWind)}
     private val fabWeatherWind : FloatingActionButton by lazy { findViewById(R.id.fabWeatherFetchWind)}
     private val fabWeatherTempAction: FloatingActionButton by lazy { findViewById(R.id.fabWeatherTempAction) }
 
@@ -30,7 +30,7 @@ class WindActivity(): AppCompatActivity() {
         viewModelWind.viewState.observe(this,::render)
 
         fabWeatherWind.setOnClickListener {
-            viewModelWind.processUIEvent(UIEvent.onButtonClickedWind)
+            viewModelWind.processUIEvent(UIEventWind.onButtonClickedWind)
         }
 
         fabWeatherTempAction.setOnClickListener{
@@ -40,8 +40,8 @@ class WindActivity(): AppCompatActivity() {
 
     }
 
-    private fun render(viewState: ViewState){
-        progressBar.isVisible = viewState.isLoading
+    private fun render(viewState: ViewStateWind){
+        progressBarWind.isVisible = viewState.isLoading
         tvSpeed.text = "${viewState.titleSpeed} ${viewState.speed}"
         tvDeg.text = "${viewState.titleDeg} ${viewState.deg}"
 
