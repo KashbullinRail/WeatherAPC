@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">WeatherAPC</string>
+    <string-array name="city">
+        <item>Kazan</item>
+        <item>Moscow</item>
+        <item>Saint Petersburg</item>
+        <item>Sochi</item>
+    </string-array>
 </resources>
