@@ -1,3 +1,3 @@
 package com.example.weatherapc
 
-var spCityChoice = "Kazan"
+var spCityChoice = ""
