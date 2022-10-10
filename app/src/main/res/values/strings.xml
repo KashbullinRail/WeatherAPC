@@ -3,7 +3,8 @@
     <string-array name="city">
         <item>Kazan</item>
         <item>Moscow</item>
-        <item>Saint Petersburg</item>
+        <item>Antalya</item>
         <item>Sochi</item>
+        <item>Stambul</item>
     </string-array>
 </resources>
