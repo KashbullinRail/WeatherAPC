@@ -1,6 +1,7 @@
 package com.example.weatherapc
 
 import android.app.Application
+import com.example.weatherapc.feature.di.weatherScreenViewModel
 import com.example.weatherapc.featureTemp.weather_screen.di.weatherScreenModuleMain
 import com.example.weatherapc.featureWind.weather_screen.di.weatherScreenModuleWind
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +15,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(weatherScreenModuleMain, weatherScreenModuleWind)
+            modules(weatherScreenModuleMain, weatherScreenModuleWind, weatherScreenViewModel)
         }
     }
 }
