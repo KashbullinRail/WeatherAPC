@@ -3,6 +3,15 @@ package com.example.weatherapc.feature.data.model
 import com.google.gson.annotations.SerializedName
 
 data class WeatherRemoteModel(
-    @SerializedName("main")
-    val main : WeatherRemoteMainModel
+    @SerializedName("temp")
+    val temperature: String?,
+    @SerializedName("pressure")
+    val pressure: String?,
+    @SerializedName("humidity")
+    val humidity: String?,
+    @SerializedName("speed")
+    val speed: String?,
+    @SerializedName("deg")
+    val deg: String?
+
 )

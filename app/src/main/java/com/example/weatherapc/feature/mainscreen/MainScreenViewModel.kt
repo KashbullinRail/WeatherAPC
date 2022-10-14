@@ -3,23 +3,31 @@ package com.example.weatherapc.feature.mainscreen
 import androidx.lifecycle.viewModelScope
 import com.example.weatherapc.base.BaseViewModel
 import com.example.weatherapc.base.Event
-import com.example.weatherapc.featureTemp.weather_screen.WeatherInteractor
+import com.example.weatherapc.feature.domain.WeatherInteractor
 import kotlinx.coroutines.launch
 
 
-class WeatherScreenViewModel(private val interactor: WeatherInteractor) :
+class MainScreenViewModel(private val interactor: WeatherInteractor) :
     BaseViewModel<ViewState>() {
+
+    init {
+        processDataEvent(DataEvent.LoadWeather)
+    }
 
 
     override fun initialViewState(): ViewState =
         ViewState(
             isLoading = false,
-            titleTemp = "Температура воздуха  ",
-            titlePressure = "Атмосферное давление  ",
-            titleHumidity = "Влажность воздуха  ",
+//            titleTemp = "Температура воздуха  ",
+//            titlePressure = "Атмосферное давление  ",
+//            titleHumidity = "Влажность воздуха  ",
             temperature = "?",
             pressure = "?",
-            humidity = "?"
+            humidity = "?",
+            speed = "?",
+            deg = "?",
+//            titleSpeed = "Скорость ветра  ",
+//            titleDeg = "Направление ветра  "
         )
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
@@ -36,7 +44,9 @@ class WeatherScreenViewModel(private val interactor: WeatherInteractor) :
                                 DataEvent.onWeatherFetchMainSucceed(
                                     temperature = it.temperature,
                                     pressure = it.pressure,
-                                    humidity = it.humidity
+                                    humidity = it.humidity,
+                                    speed = it.speed,
+                                    deg = it.deg
                                 )
                             )
                         }
@@ -50,7 +60,9 @@ class WeatherScreenViewModel(private val interactor: WeatherInteractor) :
                     isLoading = false,
                     temperature = event.temperature,
                     pressure = event.pressure,
-                    humidity = event.humidity
+                    humidity = event.humidity,
+                    speed = event.speed,
+                    deg = event.deg
                 )
             }
 

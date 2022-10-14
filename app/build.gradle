@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -8,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.weatherapc"
-        minSdk 23
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -33,13 +34,13 @@ android {
 }
 
 dependencies {
-
     def lifecycle_version = "2.6.0-alpha01"
     def retrofit_version = "2.9.0"
     def coroutines_version = "1.6.4"
     def OkHttpClient_version = '5.0.0-alpha.10'
     def GSON_version = "2.9.1"
     def koin_version= "3.2.0"
+    def logging_interceptor_version = "4.10.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
@@ -65,5 +66,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:$koin_version"
+    //Logging_Interceptor
+    implementation"com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
 
 }

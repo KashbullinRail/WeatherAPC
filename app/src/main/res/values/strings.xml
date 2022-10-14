@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">WeatherAPC</string>
+    <string name="update">Обновить</string>
+    <string name="favorite">Избранное</string>
+
     <string-array name="city">
         <item>Kazan</item>
         <item>Moscow</item>
@@ -7,4 +10,5 @@
         <item>Sochi</item>
         <item>Stambul</item>
     </string-array>
+
 </resources>

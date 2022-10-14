@@ -1,10 +1,13 @@
 package com.example.weatherapc.feature.data
 
-import com.example.weatherapc.featureTemp.weather_screen.ui.model.WeatherModel
+import com.example.weatherapc.feature.domain.WeatherModel
 
-interface WeatherRepo {
+
+interface WeatherRepository {
 
     suspend fun getTemperature(): WeatherModel
     suspend fun getPressure(): WeatherModel
     suspend fun getHumidity(): WeatherModel
+    suspend fun getSpeed(): WeatherModel
+    suspend fun getDeg(): WeatherModel
 }
