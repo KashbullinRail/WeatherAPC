@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 class MainScreenViewModel(private val interactor: WeatherInteractor) :
     BaseViewModel<ViewState>() {
 
-    init {
-        processDataEvent(DataEvent.LoadWeather)
-    }
+//    init {
+//        processDataEvent(DataEvent.LoadWeather)
+//    }
 
 
     override fun initialViewState(): ViewState =
@@ -32,7 +32,7 @@ class MainScreenViewModel(private val interactor: WeatherInteractor) :
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
-            is UIEvent.onButtonClickedMain -> {
+            is DataEvent.LoadWeather -> {
 
                 viewModelScope.launch {
                     interactor.getWeather().fold(
