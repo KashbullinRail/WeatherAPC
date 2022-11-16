@@ -8,24 +8,9 @@ import com.example.weatherapc.feature.domain.WeatherModel
 
 class WeatherRemoteRepositoryImpl(private val source: WeatherRemoteSource) : WeatherRepository {
 
-    override suspend fun getTemperature(): WeatherModel {
-        return source.getWeather().toDomian()
+    override suspend fun getWeather(): List<WeatherModel> {
+        return source.getWeather().weatherList.map {
+            it.toDomian()
+        }
     }
-
-    override suspend fun getPressure(): WeatherModel {
-        return source.getWeather().toDomian()
-    }
-
-    override suspend fun getHumidity(): WeatherModel {
-        return source.getWeather().toDomian()
-    }
-
-    override suspend fun getSpeed(): WeatherModel {
-        return source.getWeather().toDomian()
-    }
-
-    override suspend fun getDeg(): WeatherModel {
-        return source.getWeather().toDomian()
-    }
-
 }

@@ -21,25 +21,35 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
 
 
 
-//    private val adapter: ArticlesAdapter by lazy {
-//        ArticlesAdapter { index ->
-//            viewModel.processUIEvent(UIEvent.OnArticleClicked(index))
-//        }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
 
     }
 
     private fun render(viewState: ViewState) {
-        tvTemp.text = "${viewState.temperature}"
-        tvPressure.text = "${viewState.pressure}"
-        tvHumidity.text = "${viewState.humidity}"
-        tvSpeed.text = "${viewState.speed}"
-        tvDeg.text = "${viewState.deg}"
+        when(viewState.state){
+            State.Load -> {
+                tvTemp.text = "???"
+                tvPressure.text = "???"
+                tvHumidity.text = "???"
+                tvDeg.text = "???"
+                tvSpeed.text = "???"
+
+            }
+
+            State.Content -> {
+                viewState.weatherList
+            }
+
+            State.Error -> {
+
+            }
+
+        }
     }
 
 }
