@@ -44,14 +44,14 @@ class WindActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     private fun render(viewState: ViewStateWind) {
-        when(viewState.state) {
+        when (viewState.state) {
             State.Load -> {
 
             }
 
-            State.Content ->{
+            State.Content -> {
                 progressBarWind.isVisible = viewState.isLoading
-                tvSpeed.text = "${viewState.titleSpeed } ${viewState.speed}"
+                tvSpeed.text = "${viewState.titleSpeed} ${viewState.speed}"
                 tvDeg.text = "${viewState.titleDeg} ${viewState.deg}"
             }
 
@@ -59,7 +59,7 @@ class WindActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             }
 
-            }
+        }
     }
 
 
