@@ -30,7 +30,6 @@ class WindActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wind)
 
-
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.city,

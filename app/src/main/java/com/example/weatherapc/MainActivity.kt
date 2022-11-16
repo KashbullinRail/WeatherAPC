@@ -17,15 +17,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private val viewModel: WeatherScreenViewModel by viewModel()
-
     private val tvTemp: TextView by lazy { findViewById(R.id.tvTemp) }
     private val tvPressure: TextView by lazy { findViewById(R.id.tvPressure) }
     private val tvHumidity: TextView by lazy { findViewById(R.id.tvHumidity) }
-
     private val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
     private val fabWeatherMain: FloatingActionButton by lazy { findViewById(R.id.fabWeatherFetchTemp) }
     private val fabWeatherWindAction: FloatingActionButton by lazy { findViewById(R.id.fabWeatherWindAction) }
-
     private val spCity: Spinner by lazy { findViewById(R.id.spCity) }
 
 
@@ -33,16 +30,7 @@ class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.city,
-            android.R.layout.simple_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spCity.adapter = adapter
-        spCity.onItemSelectedListener = this
-
+        choiseSpinner()
 
         viewModel.viewState.observe(this, ::render)
 
@@ -66,9 +54,21 @@ class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val city: String = parent?.getItemAtPosition(position).toString()
         spCityChoice = city
+    }
+
+    fun choiseSpinner() {
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.city,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spCity.adapter = adapter
+        spCity.onItemSelectedListener = this
     }
 
 }
