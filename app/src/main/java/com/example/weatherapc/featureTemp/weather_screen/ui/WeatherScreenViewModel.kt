@@ -6,25 +6,23 @@ import com.example.weatherapc.base.Event
 import com.example.weatherapc.featureTemp.weather_screen.WeatherInteractor
 import kotlinx.coroutines.launch
 
+class WeatherScreenViewModel(private val interactor: WeatherInteractor) :
+    BaseViewModel<ViewState>() {
 
-class WeatherScreenViewModel(private val interactor: WeatherInteractor) : BaseViewModel<ViewState>() {
-
-
-    override fun initialViewState(): ViewState =
-        ViewState(
-            isLoading = false,
-            titleTemp = "Температура воздуха  ",
-            titlePressure = "Атмосферное давление  ",
-            titleHumidity = "Влажность воздуха  ",
-            temperature = "?",
-            pressure = "?",
-            humidity = "?"
-        )
+    override fun initialViewState() = ViewState(
+        state = State.Load,
+        isLoading = false,
+        titleTemp = "Температура воздуха  ",
+        titlePressure = "Атмосферное давление  ",
+        titleHumidity = "Влажность воздуха  ",
+        temperature = "?",
+        pressure = "?",
+        humidity = "?"
+    )
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
             is UIEvent.onButtonClickedMain -> {
-
                 viewModelScope.launch {
                     interactor.getWeather().fold(
                         onError = {

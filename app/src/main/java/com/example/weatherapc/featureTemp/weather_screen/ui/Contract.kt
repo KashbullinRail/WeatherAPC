@@ -10,6 +10,7 @@ enum class State {
 }
 
 data class ViewState(
+    val state: State,
     val isLoading: Boolean,
     val temperature: String,
     val pressure: String,
