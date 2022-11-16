@@ -3,10 +3,12 @@ package com.example.weatherapc
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.view.isVisible
 import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRemoteSource
+import com.example.weatherapc.featureTemp.weather_screen.ui.State
 import com.example.weatherapc.featureTemp.weather_screen.ui.UIEvent
 import com.example.weatherapc.featureTemp.weather_screen.ui.ViewState
 import com.example.weatherapc.featureTemp.weather_screen.ui.WeatherScreenViewModel
@@ -45,12 +47,21 @@ class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun render(viewState: ViewState) {
-        progressBar.isVisible = viewState.isLoading
-        tvTemp.text = "${viewState.titleTemp} ${viewState.temperature}"
-        tvPressure.text = "${viewState.titlePressure} ${viewState.pressure}"
-        tvHumidity.text = "${viewState.titleHumidity} ${viewState.humidity}"
-    }
+        when (viewState.state) {
+            State.Load -> {
 
+            }
+            State.Content -> {
+                progressBar.isVisible = viewState.isLoading
+                tvTemp.text = "${viewState.titleTemp} ${viewState.temperature}"
+                tvPressure.text = "${viewState.titlePressure} ${viewState.pressure}"
+                tvHumidity.text = "${viewState.titleHumidity} ${viewState.humidity}"
+            }
+            State.Error -> {
+                Log.e("ERROR", "error render MainActivity")
+            }
+        }
+    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
     }

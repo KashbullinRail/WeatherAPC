@@ -47,7 +47,8 @@ class WeatherScreenViewModel(private val interactor: WeatherInteractor) :
                     isLoading = false,
                     temperature = event.temperature,
                     pressure = event.pressure,
-                    humidity = event.humidity
+                    humidity = event.humidity,
+                    state = State.Content
                 )
             }
 

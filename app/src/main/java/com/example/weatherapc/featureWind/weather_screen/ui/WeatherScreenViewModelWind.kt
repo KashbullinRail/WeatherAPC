@@ -7,22 +7,22 @@ import com.example.weatherapc.featureWind.weather_screen.WeatherInteractorWind
 
 import kotlinx.coroutines.launch
 
-class WeatherScreenViewModelWind(private val interactorWind: WeatherInteractorWind) : BaseViewModel<ViewStateWind>() {
+class WeatherScreenViewModelWind(private val interactorWind: WeatherInteractorWind) :
+    BaseViewModel<ViewStateWind>() {
 
 
-    override fun initialViewState(): ViewStateWind =
-        ViewStateWind(
-            isLoading = false,
-            speed = "?",
-            deg = "?",
-            titleSpeed = "Скорость ветра  ",
-            titleDeg = "Направление ветра  "
-        )
+    override fun initialViewState() = ViewStateWind(
+        state = State.Load,
+        isLoading = false,
+        speed = "?",
+        deg = "?",
+        titleSpeed = "Скорость ветра  ",
+        titleDeg = "Направление ветра  "
+    )
 
     override fun reduce(event: Event, previousState: ViewStateWind): ViewStateWind? {
         when (event) {
             is UIEventWind.onButtonClickedWind -> {
-
                 viewModelScope.launch {
                     interactorWind.getWeather().fold(
                         onError = {
@@ -45,7 +45,8 @@ class WeatherScreenViewModelWind(private val interactorWind: WeatherInteractorWi
                 return previousState.copy(
                     isLoading = false,
                     speed = event.speed,
-                    deg = event.deg
+                    deg = event.deg,
+                    state = State.Content
                 )
             }
 

@@ -2,8 +2,14 @@ package com.example.weatherapc.featureWind.weather_screen.ui
 
 import com.example.weatherapc.base.Event
 
+enum class State {
+    Load,
+    Content,
+    Error
+}
 
 data class ViewStateWind(
+    val state: State,
     val isLoading : Boolean,
     val speed : String,
     val deg: String,
