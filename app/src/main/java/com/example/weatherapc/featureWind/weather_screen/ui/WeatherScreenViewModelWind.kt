@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.weatherapc.base.BaseViewModel
 import com.example.weatherapc.base.Event
 import com.example.weatherapc.featureWind.weather_screen.WeatherInteractorWind
-
 import kotlinx.coroutines.launch
 
 class WeatherScreenViewModelWind(private val interactorWind: WeatherInteractorWind) :

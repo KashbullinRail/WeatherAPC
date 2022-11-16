@@ -7,40 +7,33 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.view.isVisible
-import com.example.weatherapc.featureTemp.weather_screen.data.WeatherRemoteSource
+import com.example.weatherapc.databinding.ActivityMainBinding
 import com.example.weatherapc.featureTemp.weather_screen.ui.State
 import com.example.weatherapc.featureTemp.weather_screen.ui.UIEvent
 import com.example.weatherapc.featureTemp.weather_screen.ui.ViewState
 import com.example.weatherapc.featureTemp.weather_screen.ui.WeatherScreenViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: WeatherScreenViewModel by viewModel()
-    private val tvTemp: TextView by lazy { findViewById(R.id.tvTemp) }
-    private val tvPressure: TextView by lazy { findViewById(R.id.tvPressure) }
-    private val tvHumidity: TextView by lazy { findViewById(R.id.tvHumidity) }
-    private val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
-    private val fabWeatherMain: FloatingActionButton by lazy { findViewById(R.id.fabWeatherFetchTemp) }
-    private val fabWeatherWindAction: FloatingActionButton by lazy { findViewById(R.id.fabWeatherWindAction) }
-    private val spCity: Spinner by lazy { findViewById(R.id.spCity) }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         choiseSpinner()
 
         viewModel.viewState.observe(this, ::render)
 
-        fabWeatherMain.setOnClickListener {
+        binding.fabWeatherFetchTemp.setOnClickListener {
             viewModel.processUIEvent(UIEvent.onButtonClickedMain)
         }
 
-        fabWeatherWindAction.setOnClickListener {
+        binding.fabWeatherWindAction.setOnClickListener {
             val windActivityAction = Intent(this, WindActivity::class.java)
             startActivity(windActivityAction)
         }
@@ -52,10 +45,12 @@ class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             }
             State.Content -> {
-                progressBar.isVisible = viewState.isLoading
-                tvTemp.text = "${viewState.titleTemp} ${viewState.temperature}"
-                tvPressure.text = "${viewState.titlePressure} ${viewState.pressure}"
-                tvHumidity.text = "${viewState.titleHumidity} ${viewState.humidity}"
+                with(binding) {
+                    progressBar.isVisible = viewState.isLoading
+                    tvTemp.text = "${viewState.titleTemp} ${viewState.temperature}"
+                    tvPressure.text = "${viewState.titlePressure} ${viewState.pressure}"
+                    tvHumidity.text = "${viewState.titleHumidity} ${viewState.humidity}"
+                }
             }
             State.Error -> {
                 Log.e("ERROR", "error render MainActivity")
@@ -78,8 +73,8 @@ class MainActivity() : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spCity.adapter = adapter
-        spCity.onItemSelectedListener = this
+        binding.spCity.adapter = adapter
+        binding.spCity.onItemSelectedListener = this
     }
 
 }
