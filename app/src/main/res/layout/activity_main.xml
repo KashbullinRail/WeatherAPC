@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/filmAppBar"
+        android:id="@+id/weatherAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top">
@@ -20,7 +20,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/filmPreviewImageView"
+                android:id="@+id/weatherPreviewImageView"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:src="@drawable/ic_launcher_background"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        app:behavior_overlapTop = "16dp"
+        app:behavior_overlapTop = "46dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
