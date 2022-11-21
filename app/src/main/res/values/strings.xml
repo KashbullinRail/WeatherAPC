@@ -1,5 +1,12 @@
 <resources>
+
     <string name="app_name">WeatherAPC</string>
+    <string name="gradC">С</string>
+    <string name="pressur">мм.рт.ст</string>
+    <string name="persent">%</string>
+    <string name="metrSec">м/с</string>
+    <string name="grad360">град</string>
+
     <string-array name="city">
         <item>Kazan</item>
         <item>Moscow</item>
@@ -7,4 +14,5 @@
         <item>Sochi</item>
         <item>Stambul</item>
     </string-array>
+
 </resources>

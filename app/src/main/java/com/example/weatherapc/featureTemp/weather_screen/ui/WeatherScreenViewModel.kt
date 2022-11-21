@@ -39,7 +39,6 @@ class WeatherScreenViewModel(private val interactor: WeatherInteractor) :
                         }
                     )
                 }
-
                 return previousState.copy(isLoading = true)
             }
             is DataEvent.onWeatherFetchMainSucceed -> {
